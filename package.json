@@ -1,0 +1,19 @@
+{
+  "name": "reddit-clone",
+  "version": "1.0.0",
+  "description": "reddit clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsaphala/reddit-clone.git"
+  },
+  "author": "Ronaldi Kurniawan Saphala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rsaphala/reddit-clone/issues"
+  },
+  "homepage": "https://github.com/rsaphala/reddit-clone#readme"
+}
