@@ -1,6 +1,7 @@
 'use strict';
 
-const app = require('express')();
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const winston = require('winston');
@@ -8,18 +9,24 @@ const path = require('path');
 
 const hbs = require('express-handlebars').create({
     extname: 'hbs',
-    layoutsDir: path.join(__dirname, '/views'),
+    layoutsDir: path.join(__dirname, '/views/templates'),
     partialsDir: [path.join(__dirname, '/views/partials')],
     defaultLayout: 'index'
 });
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, '/views'));
+app.set('views', path.join(__dirname, '/views/templates'));
 
-app.use(cors());
+app.use('/css', express.static(path.join(__dirname, '/views/css')));
+app.use('/js', express.static(path.join(__dirname, '/views/js')));
+
+
+app.use(cors()); // allow cross origin request
 app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({
+    extended: true
+})); // for parsing application/x-www-form-urlencoded
 
 app.get('/', require('./controller/list'));
 

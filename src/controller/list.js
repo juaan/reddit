@@ -2,7 +2,7 @@
 
 module.exports = (req, res) => {
     let obj = {
-        title: 'Mantap'
+        topics: ['wakaka', 'kontol']
     };
     return res.render('body', obj);
 };
