@@ -29,6 +29,7 @@ app.use(bodyParser.urlencoded({
 })); // for parsing application/x-www-form-urlencoded
 
 app.get('/', require('./controller/list'));
+app.get('/submit/:topic', require('./controller/submission'));
 
 let port = 3000;
 

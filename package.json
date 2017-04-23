@@ -25,7 +25,7 @@
     "express": "~4.15.2",
     "express-handlebars": "~3.0.0",
     "handlebars": "^4.0.6",
-    "lodash": "~4.17.4",
+    "lodash": "^4.17.4",
     "request": "~2.81.0",
     "winston": "~2.3.1"
   }

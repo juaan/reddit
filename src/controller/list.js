@@ -1,8 +1,7 @@
 'use strict';
 
+let array = require('../common/arraySingleton');
+
 module.exports = (req, res) => {
-    let obj = {
-        topics: ['wakaka', 'kontol']
-    };
-    return res.render('body', obj);
+    return res.render('body', array);
 };

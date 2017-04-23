@@ -1,10 +1,10 @@
-<ul class ="haha">
+<ul id ="list">
     {{#each topics}}
         <li>
             <div class="resize">
                 <div class="callout clearfix">
-                    <a>{{this}}</a>
-                    <a class="button float-right">5 Votes</a>
+                    <a>{{this.topic}}</a>
+                    <a class="button float-right">{{this.votes}} Votes</a>
                     <a class="button float-right">Downvote</a>
                     <a class="button float-right">Upvote</a>
                 </div>
