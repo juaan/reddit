@@ -9,6 +9,7 @@ const path = require('path');
 const hbs = require('express-handlebars').create({
     extname: 'hbs',
     layoutsDir: path.join(__dirname, '/views'),
+    partialsDir: [path.join(__dirname, '/views/partials')],
     defaultLayout: 'index'
 });
 
