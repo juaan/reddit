@@ -12,6 +12,8 @@ $(document).ready(function () {
             ajaxCall('/submit/' + topic)
                 .done((response) => {
                     $('#body-content').html(response);
+                    let hostname = getHostname($(location).attr('href'));
+                    window.history.replaceState({}, 'Reddit', hostname);
                 })
                 .fail((jqXHR, textStatus, error) => {
                     let errorMessage = JSON.parse(jqXHR.responseText).error;
@@ -67,4 +69,9 @@ let ajaxCall = (url) => {
         url: url,
         method: 'GET'
     });
+};
+
+let getHostname = (url) => {
+    let m = url.match(/^http:\/\/[^/]+/);
+    return m ? m[0] : null;
 };

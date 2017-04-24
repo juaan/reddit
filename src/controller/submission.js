@@ -5,6 +5,7 @@ let array = require('../common/arraySingleton');
 
 const helper = require('../common/helper');
 const constants = require('../common/constants');
+const moment = require('moment');
 
 module.exports = (req, res) => {
     let topic = req.params.topic;
@@ -17,7 +18,8 @@ module.exports = (req, res) => {
     hashMap.set(topic, array.length);
     array.push({
         topic: topic,
-        votes: 0
+        votes: 0,
+        timestamp: moment().valueOf()
     });
 
     // Reverse the array in order to show the most recently inserted element first.

@@ -1,3 +1,3 @@
 'use strict';
 
-exports.OFFSET = 5;
+exports.OFFSET = 20;

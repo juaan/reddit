@@ -35,6 +35,8 @@ exports.getCurrentPage = (page, array, offset, isSort) => {
 exports.sortByVote = (array) => {
     let clone = _.clone(array);
     return clone.sort((a, b) => {
-        return b.votes - a.votes;
+        let votes = b.votes - a.votes;
+        let timestamp = b.timestamp - a.timestamp;
+        return (votes === 0) ? timestamp : votes;
     });
 };
