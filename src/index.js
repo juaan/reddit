@@ -38,7 +38,7 @@ app.get('/', require('./controller/list'));
 app.get('/submit/:topic', require('./controller/submission'));
 app.get('/api/vote/', require('./api/vote'));
 
-let port = 3000;
+let port = process.env.PORT || 3000;
 
 app.listen(port, () => {
     winston.log('info', 'Listening on port ' + port);
