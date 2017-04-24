@@ -16,8 +16,9 @@ module.exports = (req, res) => {
         topic: topic,
         votes: 0
     });
-
-    return res.status(200).send({
-        success: 'Topic succesfully inserted'
-    });
+    let obj = {
+        topics: array,
+        layout: false
+    };
+    return res.render('topic', obj);
 };

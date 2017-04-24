@@ -9,9 +9,9 @@ $(document).ready(function () {
         } else if (topic.length === 0) {
             alert('Input cannot be empty');
         } else {
-            ajaxCall('/api/submit/' + topic)
-                .done(() => {
-                    push(topic);
+            ajaxCall('/submit/' + topic)
+                .done((response) => {
+                    $('#list').html(response);
                 })
                 .fail((jqXHR, textStatus, error) => {
                     let errorMessage = JSON.parse(jqXHR.responseText).error;
@@ -53,8 +53,7 @@ $(document).ready(function () {
 let ajaxCall = (url) => {
     return $.ajax({
         url: url,
-        method: 'GET',
-        dataType: 'json'
+        method: 'GET'
     });
 };
 
