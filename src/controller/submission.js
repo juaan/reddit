@@ -3,6 +3,9 @@
 let hashMap = require('../common/hashMapSingleton');
 let array = require('../common/arraySingleton');
 
+const helper = require('../common/helper');
+const constants = require('../common/constants');
+
 module.exports = (req, res) => {
     let topic = req.params.topic;
     if (hashMap.has(topic)) {
@@ -16,9 +19,10 @@ module.exports = (req, res) => {
         topic: topic,
         votes: 0
     });
-    let obj = {
-        topics: array,
-        layout: false
-    };
-    return res.render('topic', obj);
+
+    // Reverse the array in order to show the most recently inserted element first.
+    let obj = helper.getCurrentPage(0, array, constants.OFFSET, false);
+    obj.layout = false;
+    console.log(obj.topics);
+    return res.render('body', obj);
 };

@@ -1,11 +1,14 @@
-{{#reverseForEach topics}}<li>
-    <div class="resize">
-        <div class="callout clearfix">
-            <a class="topic">{{this.topic}}</a>
-            <a class="button float-right votes">{{this.votes}} Votes</a>
-            <a class="button float-right downvote">Downvote</a>
-            <a class="button float-right upvote">Upvote</a>
-        </div>
-    </div>
-</li>
-{{/reverseForEach}}
+<ul id ="list">
+    {{#reverseForEach topics}}
+        <li>
+            <div class="resize">
+                <div class="callout clearfix">
+                    <a class="topic">{{this.topic}}</a>
+                    <a class="button float-right votes">{{this.votes}} Votes</a>
+                    <a class="button float-right downvote">Downvote</a>
+                    <a class="button float-right upvote">Upvote</a>
+                </div>
+            </div>
+        </li>
+    {{/reverseForEach}}
+</ul>

@@ -1,14 +1,30 @@
-<ul id ="list">
-    {{#reverseForEach topics}}
-        <li>
-            <div class="resize">
-                <div class="callout clearfix">
-                    <a class="topic">{{this.topic}}</a>
-                    <a class="button float-right votes">{{this.votes}} Votes</a>
-                    <a class="button float-right downvote">Downvote</a>
-                    <a class="button float-right upvote">Upvote</a>
-                </div>
+<ul id="list">
+    {{#each topics}}
+    <li>
+        <div class="resize">
+            <div class="callout clearfix">
+                <a class="topic">{{this.topic}}</a>
+                <a class="button float-right votes">{{this.votes}} Votes</a>
+                <a class="button float-right downvote">Downvote</a>
+                <a class="button float-right upvote">Upvote</a>
             </div>
-        </li>
-    {{/reverseForEach}}
+        </div>
+    </li>
+    {{/each}}
 </ul>
+<div class="flexbox-container">
+    <div>
+        {{#if hasNext.status}}
+        <a class="button float-right " href="/?page={{hasNext.page}}&sortType={{sort}}">Next</a>
+        {{else}}
+        <a class="button disabled float-right ">Next</a>
+        {{/if}}
+
+        {{#if hasPrev.status}}
+        <a class="button float-right " href="/?page={{hasPrev.page}}&sortType={{sort}}">Prev</a>
+        {{else}}
+        <a class="button disabled float-right ">Prev</a>
+        {{/if}}
+    </div>
+</div>
+<input type="hidden" id="page" value="{{page}}">

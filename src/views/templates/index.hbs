@@ -17,7 +17,11 @@
 </head>
 
 <body>
-    {{> _submit }} {{{body}}} {{> _pagination }}
+    {{> _submit }} 
+    <div id="body-content">
+        {{{body}}}
+    </div>
+     {{> _pagination }}
 </body>
 
 </html>

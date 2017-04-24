@@ -11,7 +11,7 @@ $(document).ready(function () {
         } else {
             ajaxCall('/submit/' + topic)
                 .done((response) => {
-                    $('#list').html(response);
+                    $('#body-content').html(response);
                 })
                 .fail((jqXHR, textStatus, error) => {
                     let errorMessage = JSON.parse(jqXHR.responseText).error;
@@ -47,6 +47,19 @@ $(document).ready(function () {
                 alert('Error : ' + errorMessage);
             });
     });
+
+     $('#sort-btn').click(function () {
+         let page = document.getElementById('page').value;
+         let url = '/?page=' + page + '&sortType=desc';
+         ajaxCall(url)
+            .done((response) => {
+                $('#body-content').html(response);
+            })
+             .fail((jqXHR, textStatus, error) => {
+                let errorMessage = JSON.parse(jqXHR.responseText).error;
+                alert('Error : ' + errorMessage);
+            });
+     });
 });
 
 let ajaxCall = (url) => {
