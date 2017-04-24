@@ -41,7 +41,6 @@ exports.getCurrentPage = (page, array, offset, isSort) => {
         count++;
     }
 
-    console.log('reversed array ', reversedArray);
     let obj = {
         topics: reversedArray.slice(begin, end),
         hasNext: {

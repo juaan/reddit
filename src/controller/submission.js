@@ -8,10 +8,10 @@ const constants = require('../common/constants');
 const moment = require('moment');
 
 /**
-* This function renders the product list when the submit button is clicked.
-* @param  {Object} req - request object
-* @param  {Object} res - response object
-*/
+ * This function renders the product list when the submit button is clicked.
+ * @param  {Object} req - request object
+ * @param  {Object} res - response object
+ */
 module.exports = (req, res) => {
     let topic = req.params.topic;
 
@@ -31,6 +31,5 @@ module.exports = (req, res) => {
     // Reverse the array in order to show the most recently inserted element first.
     let obj = helper.getCurrentPage(0, array, constants.OFFSET, false);
     obj.layout = false;
-    console.log(obj.topics);
     return res.render('body', obj);
 };

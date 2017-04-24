@@ -23,7 +23,9 @@ module.exports = (req, res) => {
     if (!_.isNil(position)) {
         array[position].votes += vote;
         return res.status(200).send({
-            success: 'Vote sucessfully updated'
+            success: 'Vote sucessfully updated',
+            topic: topic,
+            voteCount: array[position].votes
         });
     }
     return res.status(400).send({

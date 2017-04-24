@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+* This module is the entry point of the application, where routing configurations , view engines, parsers and loggers are initialized.
+* In order to start the app, run node src/index.js
+**/
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
