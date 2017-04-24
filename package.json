@@ -4,6 +4,7 @@
   "description": "reddit clone",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "mocha --timeout 20000 $(find tests -name *.spec.js)"
   },
   "repository": {
