@@ -6,12 +6,12 @@ let array = require('../common/arraySingleton');
 module.exports = (req, res) => {
     let topic = req.params.topic;
     if (hashMap.has(topic)) {
-        return res.status(404).send({
+        return res.status(400).send({
             error: 'Topic already exists'
         });
     }
 
-    hashMap.set(topic, 0);
+    hashMap.set(topic, array.length);
     array.push({
         topic: topic,
         votes: 0

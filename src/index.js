@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const winston = require('winston');
 const path = require('path');
+const morgan = require('morgan');
 
 const hbs = require('express-handlebars').create({
     extname: 'hbs',
@@ -13,7 +14,7 @@ const hbs = require('express-handlebars').create({
     partialsDir: [path.join(__dirname, '/views/partials')],
     defaultLayout: 'index'
 });
-
+app.use(morgan('tiny'));
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '/views/templates'));
@@ -29,7 +30,8 @@ app.use(bodyParser.urlencoded({
 })); // for parsing application/x-www-form-urlencoded
 
 app.get('/', require('./controller/list'));
-app.get('/submit/:topic', require('./controller/submission'));
+app.get('/api/submit/:topic', require('./api/submission'));
+app.get('/api/vote/', require('./api/vote'));
 
 let port = 3000;
 

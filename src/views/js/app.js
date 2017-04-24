@@ -9,7 +9,7 @@ $(document).ready(function () {
         } else if (topic.length === 0) {
             alert('Input cannot be empty');
         } else {
-            submitData(topic)
+            ajaxCall('/api/submit/' + topic)
                 .done(() => {
                     push(topic);
                 })
@@ -19,12 +19,40 @@ $(document).ready(function () {
                 });
         }
     });
+
+    $(document).on('click', '.upvote', function () {
+        let topic = $(this).closest('li').find('a.topic').text();
+        let $votes = $(this).closest('li').find('a.votes');
+        let voteCount = Number($votes.text().split(' ')[0]) + 1;
+        $votes.text(voteCount + ' Votes');
+        let url = '/api/vote/?topic=' + topic + '&voteType=up';
+        ajaxCall(url)
+            .done()
+            .fail((jqXHR, textStatus, error) => {
+                let errorMessage = JSON.parse(jqXHR.responseText).error;
+                alert('Error : ' + errorMessage);
+            });
+    });
+
+    $(document).on('click', '.downvote', function () {
+        let topic = $(this).closest('li').find('a.topic').text();
+        let $votes = $(this).closest('li').find('a.votes');
+        let voteCount = Number($votes.text().split(' ')[0]) - 1;
+        $votes.text(voteCount + ' Votes');
+        let url = '/api/vote/?topic=' + topic + '&voteType=down';
+        ajaxCall(url)
+            .done()
+            .fail((jqXHR, textStatus, error) => {
+                let errorMessage = JSON.parse(jqXHR.responseText).error;
+                alert('Error : ' + errorMessage);
+            });
+    });
 });
 
 
-let submitData = (topic) => {
+let ajaxCall = (url) => {
     return $.ajax({
-        url: '/submit/' + topic,
+        url: url,
         method: 'GET',
         dataType: 'json'
     });

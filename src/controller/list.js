@@ -3,5 +3,8 @@
 let array = require('../common/arraySingleton');
 
 module.exports = (req, res) => {
-    return res.render('body', array);
+    let obj = {
+        topics: array
+    };
+    return res.render('body', obj);
 };
