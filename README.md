@@ -1,2 +1,2 @@
-# reddit-clone
-reddit clone  
+# webapp with reddit like features
+webapp with reddit like features
