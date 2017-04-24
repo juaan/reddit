@@ -1,4 +1,8 @@
 'use strict';
+/**
+* This module contains the front-end logic for this app. Mostly about click events, error handling and ajax calls
+*
+*/
 
 $(document).ready(function () {
     $('#submit-btn').click(function () {

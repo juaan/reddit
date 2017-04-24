@@ -12,19 +12,5 @@
     </li>
     {{/each}}
 </ul>
-<div class="flexbox-container">
-    <div>
-        {{#if hasNext.status}}
-        <a class="button float-right " href="/?page={{hasNext.page}}&sortType={{sort}}">Next</a>
-        {{else}}
-        <a class="button disabled float-right ">Next</a>
-        {{/if}}
+{{> _pagination }}
 
-        {{#if hasPrev.status}}
-        <a class="button float-right " href="/?page={{hasPrev.page}}&sortType={{sort}}">Prev</a>
-        {{else}}
-        <a class="button disabled float-right ">Prev</a>
-        {{/if}}
-    </div>
-</div>
-<input type="hidden" id="page" value="{{page}}">

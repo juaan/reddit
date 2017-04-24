@@ -12,17 +12,9 @@ const hbs = require('express-handlebars').create({
     extname: 'hbs',
     layoutsDir: path.join(__dirname, '/views/templates'),
     partialsDir: [path.join(__dirname, '/views/partials')],
-    defaultLayout: 'index',
-    helpers: {
-        reverseForEach: function (context, options) {
-            let ret = '';
-            for (let i = context.length - 1; i >= 0; i--) {
-                ret = ret + options.fn(context[i]);
-            }
-            return ret;
-        }
-    }
+    defaultLayout: 'index'
 });
+
 app.use(morgan('tiny'));
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
