@@ -31,7 +31,6 @@ app.set('views', path.join(__dirname, '/views/templates'));
 app.use('/css', express.static(path.join(__dirname, '/views/css')));
 app.use('/js', express.static(path.join(__dirname, '/views/js')));
 
-
 app.use(cors()); // allow cross origin request
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({

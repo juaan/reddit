@@ -49,20 +49,9 @@ $(document).ready(function () {
     });
 });
 
-
 let ajaxCall = (url) => {
     return $.ajax({
         url: url,
         method: 'GET'
     });
-};
-
-
-let push = (topic) => {
-    let context = {
-        topic: topic,
-        votes: 0
-    };
-    let template = Handlebars.templates['topic.hbs'](context);
-    $('#list').prepend(template);
 };
