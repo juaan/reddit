@@ -48,7 +48,7 @@ let initialize = () => {
                 ajaxCall(SUBMIT.URL, 'POST', data)
                     .done((response) => {
                         $('#body-content').html(response);
-                        window.history.replaceState({}, 'Reddit', hostname);
+                        window.history.replaceState({}, 'Reddit', '/');
                     })
                     .fail((jqXHR, textStatus, error) => {
                         let errorMessage = JSON.parse(jqXHR.responseText).error;
@@ -96,7 +96,7 @@ let initialize = () => {
             let url = '/?page=' + page + '&sortType=desc';
             ajaxCall(url, 'GET')
                 .done((response) => {
-                    window.history.replaceState({}, 'Reddit', hostname + url);
+                    window.history.replaceState({}, 'Reddit', url);
                     $('#body-content').html(response);
                 })
                 .fail((jqXHR, textStatus, error) => {
