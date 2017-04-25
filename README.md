@@ -2,6 +2,6 @@
 webapp with reddit like features
 
 How to run:
-Install Node JS
-npm install
-npm start
+- Install Node JS (I used version 4.6.2)
+- npm install
+- npm start
