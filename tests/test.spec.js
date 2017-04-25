@@ -19,7 +19,7 @@ describe('Testing', function () {
   let params = {
     query: {
       topic: 'haha',
-      voteType: 1
+      voteType: 'up'
     }
   };
 
@@ -46,7 +46,7 @@ describe('Testing', function () {
 
   context('Testing /api/vote/ downvote', () => {
     before('Hit vote api (downvote)', () => {
-      params.query.voteType = -1;
+      params.query.voteType = 'down';
       return request.post(voteUrl)
         .send(params.query)
         .then((res) => {
