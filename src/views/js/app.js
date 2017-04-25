@@ -3,6 +3,7 @@
 * This module contains the front-end logic for this app. Mostly about click events, error handling and ajax calls
 *
 */
+const constants = require('./constants');
 
 $(document).ready(function () {
     $('#submit-btn').click(function () {
@@ -13,7 +14,10 @@ $(document).ready(function () {
         } else if (topic.length === 0) {
             alert('Input cannot be empty');
         } else {
-            ajaxCall('/submit/' + topic)
+            let data = {
+                topic: topic
+            };
+            ajaxCall(constants.SUBMIT.URL, 'POST', data)
                 .done((response) => {
                     $('#body-content').html(response);
                     let hostname = getHostname($(location).attr('href'));
@@ -31,8 +35,11 @@ $(document).ready(function () {
         let $votes = $(this).closest('li').find('a.votes');
         let voteCount = Number($votes.text().split(' ')[0]) + 1;
         $votes.text(voteCount + ' Votes');
-        let url = '/api/vote/?topic=' + topic + '&voteType=up';
-        ajaxCall(url)
+        let data = {
+            topic: topic,
+            voteType: constants.VOTE.UP
+        };
+        ajaxCall(constants.VOTE.URL, 'POST', data)
             .done()
             .fail((jqXHR, textStatus, error) => {
                 let errorMessage = JSON.parse(jqXHR.responseText).error;
@@ -45,8 +52,11 @@ $(document).ready(function () {
         let $votes = $(this).closest('li').find('a.votes');
         let voteCount = Number($votes.text().split(' ')[0]) - 1;
         $votes.text(voteCount + ' Votes');
-        let url = '/api/vote/?topic=' + topic + '&voteType=down';
-        ajaxCall(url)
+        let data = {
+            topic: topic,
+            voteType: constants.VOTE.DOWN
+        };
+        ajaxCall(constants.VOTE.URL, 'POST', data)
             .done()
             .fail((jqXHR, textStatus, error) => {
                 let errorMessage = JSON.parse(jqXHR.responseText).error;
@@ -57,7 +67,7 @@ $(document).ready(function () {
      $('#sort-btn').click(function () {
          let page = document.getElementById('page').value;
          let url = '/?page=' + page + '&sortType=desc';
-         ajaxCall(url)
+         ajaxCall(url, 'GET')
             .done((response) => {
                 $('#body-content').html(response);
             })
@@ -68,11 +78,15 @@ $(document).ready(function () {
      });
 });
 
-let ajaxCall = (url) => {
-    return $.ajax({
+let ajaxCall = (url, method, data) => {
+    let options = {
         url: url,
-        method: 'GET'
-    });
+        method: method
+    };
+    if (data && method === 'POST') {
+        options.data = data;
+    }
+    return $.ajax(options);
 };
 
 let getHostname = (url) => {

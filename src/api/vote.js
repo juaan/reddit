@@ -7,18 +7,17 @@ const _ = require('lodash');
 
 /**
 * API endpoint to vote for a particular topic
-* /api/vote/ (GET)
-* query parameters: topic, voteType
-* sample call : /api/vote/?topic=hello&voteType=up
+* /api/vote/ (POST)
+* body: topic, voteType
+*
 *
 * @param  {Object} req request object
 * @param  {Object} res response object
 * @returns (JSON) Json object
 */
 module.exports = (req, res) => {
-    let topic = req.query.topic;
-    let vote = (req.query.voteType === 'up') ? 1 : -1;
-
+    let topic = req.body.topic;
+    let vote = (req.body.voteType === 1) ? 1 : -1;
     let position = hashMap.get(topic);
     if (!_.isNil(position)) {
         array[position].votes += vote;

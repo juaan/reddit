@@ -13,7 +13,7 @@ const moment = require('moment');
  * @param  {Object} res - response object
  */
 module.exports = (req, res) => {
-    let topic = req.params.topic;
+    let topic = req.body.topic;
 
     if (hashMap.has(topic)) {
         return res.status(400).send({

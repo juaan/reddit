@@ -35,8 +35,8 @@ app.use(bodyParser.urlencoded({
 })); // for parsing application/x-www-form-urlencoded
 
 app.get('/', require('./controller/list'));
-app.get('/submit/:topic', require('./controller/submission'));
-app.get('/api/vote/', require('./api/vote'));
+app.post('/submit/', require('./controller/submission'));
+app.post('/api/vote/', require('./api/vote'));
 
 let port = process.env.PORT || 3000;
 

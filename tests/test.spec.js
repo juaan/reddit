@@ -14,20 +14,21 @@ const request = chai.request.agent(server);
 describe('Testing', function () {
   let response;
   let voteUrl = '/api/vote';
-  let submitUrl = '/submit/haha';
+  let submitUrl = '/submit';
 
   let params = {
     query: {
       topic: 'haha',
-      voteType: 'up'
+      voteType: 1
     }
   };
 
   context('Testing /api/vote/ upvote', () => {
-    before('get response from the API', () => {
-      return request.get(submitUrl)
+    before('post request to the API', () => {
+      return request.post(submitUrl)
+        .send({topic: 'haha'})
         .then(() => {
-          return request.get(voteUrl).query(params.query);
+          return request.post(voteUrl).send(params.query);
         })
         .then((res) => {
           response = res.body;
@@ -45,9 +46,9 @@ describe('Testing', function () {
 
   context('Testing /api/vote/ downvote', () => {
     before('Hit vote api (downvote)', () => {
-      params.query.voteType = 'down';
-      return request.get(voteUrl)
-        .query(params.query)
+      params.query.voteType = -1;
+      return request.post(voteUrl)
+        .send(params.query)
         .then((res) => {
           response = res.body;
         });
